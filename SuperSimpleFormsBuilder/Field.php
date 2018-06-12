@@ -15,6 +15,7 @@ class Field
     private $default_value;
     private $validator;
     private $value;
+    private $valid = false;
 
     /**
      * Field constructor.
@@ -99,12 +100,21 @@ class Field
 
     /**
      * @param $value
+     * @return bool True of valid or no validator false otherwise
      */
     public function setValue($value)
     {
         $this->value = $value;
         if (!is_null($this->validator)) {
-            $this->validator->validate($this->value);
+            $this->valid = $this->validator->validate($this->value);
+        } else {
+            $this->valid = true;
         }
     }
+
+    public function isValid()
+    {
+        return $this->valid;
+    }
+
 }

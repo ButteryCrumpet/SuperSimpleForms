@@ -62,6 +62,23 @@ class Form
         return $this->fields;
     }
 
+    public function isValid()
+    {
+        $pass = true;
+        foreach ($this->fields as $field) {
+            $pass = $pass && $field->isValid();
+        }
+        return $pass;
+    }
+
+    public function getErrors()
+    {
+        $errors = [];
+        foreach ($this->fields as $field) {
+            $errors[$field->getName()] = $field->getValidator()->getErrors();
+        }
+    }
+
     /**
      * @param Field $form
      * @return bool
