@@ -36,20 +36,20 @@ class Form
      */
     public function handleRequest(ServerRequestInterface $request)
     {
-        $post_data = $request->getParsedBody();
-        $file_data = $request->getUploadedFiles();
+        $postData = $request->getParsedBody();
+        $fileData = $request->getUploadedFiles();
 
         foreach ($this->fields as $field) {
             $name = $field->getName();
             if ($this->isFile($field)) {
-                if (isset($file_data[$name])) {
-                    $field->setValue($file_data[$name]);
+                if (isset($fileData[$name])) {
+                    $field->setValue($fileData[$name]);
                 }
                 continue;
             }
 
-            if (isset($post_data[$name])) {
-                $field->setValue($post_data[$name]);
+            if (isset($postData[$name])) {
+                $field->setValue($postData[$name]);
             }
         }
     }

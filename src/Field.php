@@ -12,7 +12,7 @@ class Field
     private $required;
     private $type = "text";
     private $label;
-    private $default_value;
+    private $defaultValue;
     private $validator;
     private $value;
     private $valid = false;
@@ -23,7 +23,7 @@ class Field
      * @param string $type
      * @param bool $required
      * @param string $label
-     * @param string|array $default_value
+     * @param string|array $defaultValue
      * @param ValidatorInterface|null $validator
      */
     public function __construct(
@@ -31,14 +31,14 @@ class Field
         $type = "text",
         $required = false,
         $label = "",
-        $default_value = "",
+        $defaultValue = "",
         ValidatorInterface $validator = null
     ) {
         $this->name = $name;
         $this->type = $type;
         $this->required = $required;
         $this->label = $label;
-        $this->default_value = $default_value;
+        $this->defaultValue = $defaultValue;
         $this->validator = $validator;
     }
 
@@ -79,7 +79,7 @@ class Field
      */
     public function getDefaultValue()
     {
-        return $this->default_value;
+        return $this->defaultValue;
     }
 
     /**
@@ -100,7 +100,6 @@ class Field
 
     /**
      * @param $value
-     * @return bool True of valid or no validator false otherwise
      */
     public function setValue($value)
     {
